@@ -57,7 +57,7 @@ public class PersonaController {
         return persona;
 
     }
-    @CrossOrigin(origins = "http://localhost:4200")
+    
     @GetMapping("/personas/traer/perfil")
     public Persona findPersona() {
         return ipersonaService.findPersona((long) 1);
