@@ -8,9 +8,7 @@ import com.example.demo.Dto.dtoEducacion;
 import com.example.demo.Entity.Educacion;
 import com.example.demo.Security.Controller.Mensaje;
 import com.example.demo.Service.Seducacion;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -45,12 +43,12 @@ public class CEducacion {
     @GetMapping("/detail/{id}")
     public ResponseEntity<Educacion> getById(@PathVariable("id") int id){
         if(!sEducacion.existsById(id)){
-            return new ResponseEntity(new Mensaje("no exist el id"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Mensaje("no exist el id"), HttpStatus.NOT_FOUND);
         }
         Educacion educacion = sEducacion.getOne(id).get();
         return new ResponseEntity(educacion, HttpStatus.OK);
     }
-    @DeleteMapping("/delete{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") int id) {
         if (!sEducacion.existsById(id)) {
             return new ResponseEntity(new Mensaje("No existe el id"), HttpStatus.NOT_FOUND);
